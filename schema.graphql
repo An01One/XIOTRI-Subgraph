@@ -1,0 +1,38 @@
+type Approval_ @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes! 
+  spender: Bytes! 
+  value: BigInt!
+}
+
+type OwnershipTransferred_ @entity {
+  id: ID!
+  count: BigInt!
+  previousOwner: Bytes! 
+  newOwner: Bytes! 
+}
+
+type RoleGranted_ @entity {
+  id: ID!
+  count: BigInt!
+  role: Bytes! 
+  account: Bytes! 
+  sender: Bytes!
+}
+
+type RoleRevoked_ @entity {
+  id: ID!
+  count: BigInt!
+  role: Bytes! 
+  account: Bytes! 
+  sender: Bytes!
+}
+
+type Transfer_ @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes! 
+  to: Bytes! 
+  value: BigInt!
+}

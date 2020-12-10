@@ -1,0 +1,42 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: BaseToken
+    network: mainnet
+    source:
+      address: "0x31024A4C3e9aEeb256B825790F5cb7ac645e7cD5"
+      abi: BaseToken
+      startBlock: 10664263
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - MintFinished
+        - OwnershipTransferred
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - TransferEnabled
+      abis:
+        - name: BaseToken
+          file: ./abis/BaseToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: MintFinished()
+          handler: handleMintFinished
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransferEnabled()
+          handler: handleTransferEnabled
+      file: ./src/mapping.ts
